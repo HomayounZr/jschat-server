@@ -8,6 +8,8 @@ const app = require('./appStart/expressStart');
 const server = http.createServer(app);
 
 // implement web-socket here
+const { startSocket } = require('./helpers/sockets/mainSocket');
+startSocket(server);
 
 const PORT = process.env.PORT;
 server.listen(PORT, () => {

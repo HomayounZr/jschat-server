@@ -1,5 +1,6 @@
 const {
     userModel,
+    privateMessageModel,
 } = require('../models/mongooseModels');
 const LogHelper = require('./logHelper');
 
@@ -52,7 +53,7 @@ class MongooseHelper {
         });
     }
 
-    static users_login(email, password) {
+    static users_login = (email, password) => {
         return new Promise((resolve, reject) => {
             userModel.findOne({
                 email: email,
@@ -65,6 +66,14 @@ class MongooseHelper {
                     reject(err);
                 }
             });
+        });
+    }
+
+    static users_removeAll(){
+        userModel.deleteMany({}, (err) => {
+            if(err){
+                console.log('err');
+            }
         });
     }
 }
